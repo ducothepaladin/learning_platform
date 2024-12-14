@@ -1,0 +1,855 @@
+[
+    {
+        "Title": "Introduction to MongoDB",
+        "Detail": {
+            "Introduction": "MongoDB is a NoSQL database that uses JSON-like documents with optional schemas. It is designed for scalability and flexibility, making it suitable for modern applications.",
+            "Usage": "MongoDB is ideal for applications that require high availability, horizontal scalability, and quick iteration.",
+            "Sample": "Connecting to MongoDB:\n```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => { /*...*/ });\n```"
+        },
+        "Example": {
+            "Description": "Connecting to a MongoDB instance and creating a database.",
+            "Explanation": "This example demonstrates the basic connection to a MongoDB server.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    if (err) throw err;\n    const db = client.db('mydatabase');\n    console.log('Database created!');\n    client.close();\n});\n```"
+        },
+        "Revision": {
+            "Title": "Understanding Databases",
+            "Example": "What makes NoSQL databases different from relational databases.",
+            "Usage": "The flexibility of document-based storage in MongoDB vs. structured table storage."
+        },
+        "Guidelines": [
+            "Understand the differences between NoSQL and SQL databases.",
+            "Familiarize yourself with MongoDB's architecture."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "MongoClient.connect",
+                "Description": "Establishes a connection to the MongoDB server."
+            },
+            {
+                "Method": "db.createCollection",
+                "Description": "Creates a new collection in the database."
+            }
+        ],
+        "Project": {
+            "Description": "Set up a simple MongoDB instance and create a database.",
+            "Tasks": [
+                "Install MongoDB and start the server.",
+                "Connect to MongoDB using a Node.js application.",
+                "Create a database and a collection."
+            ]
+        }
+    },
+    {
+        "Title": "Installation and Setup",
+        "Detail": {
+            "Introduction": "This lesson covers the steps to install MongoDB on different operating systems and how to set it up for first use.",
+            "Usage": "Proper installation and configuration are crucial for efficient database management and operation.",
+            "Sample": "Basic installation command for Ubuntu:\n```bash\nsudo apt-get install -y mongodb\n```"
+        },
+        "Example": {
+            "Description": "Installing MongoDB on a Windows machine.",
+            "Explanation": "Follow these steps to install MongoDB on Windows.",
+            "Code": "1. Download MongoDB from the official website.\n2. Run the installer and follow the instructions.\n3. Create a data directory (e.g., C:\\data\\db).\n4. Start the MongoDB server using:\n   ```bash\n   mongod --dbpath C:\\data\\db\n   ```"
+        },
+        "Revision": {
+            "Title": "Introduction to MongoDB",
+            "Example": "Understanding what MongoDB is and its core features.",
+            "Usage": "The importance of proper installation for optimal use."
+        },
+        "Guidelines": [
+            "Check compatibility with your operating system before installation.",
+            "Ensure the data folder is created and accessible."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "mongod",
+                "Description": "The command to start the MongoDB server."
+            },
+            {
+                "Method": "mongo",
+                "Description": "The command-line client to interact with the MongoDB server."
+            }
+        ],
+        "Project": {
+            "Description": "Install MongoDB on your machine and set it up for first use.",
+            "Tasks": [
+                "Download and install MongoDB.",
+                "Start the MongoDB server.",
+                "Connect to the MongoDB shell."
+            ]
+        }
+    },
+    {
+        "Title": "Core MongoDB Concepts",
+        "Detail": {
+            "Introduction": "Understanding the fundamental concepts of MongoDB, including documents, collections, and databases.",
+            "Usage": "These core concepts are critical for effective data modeling and retrieval in MongoDB.",
+            "Sample": "Creating a document:\n```javascript\ndb.collection.insertOne({ name: 'Alice', age: 25 });\n```"
+        },
+        "Example": {
+            "Description": "Defining and creating a document in a collection.",
+            "Explanation": "This example demonstrates how to create a document and store it in a collection.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    db.collection('users').insertOne({ name: 'Alice', age: 25 }, (err, res) => {\n        if (err) throw err;\n        console.log('User inserted:', res.ops[0]);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Installation and Setup",
+            "Example": "Installing MongoDB and understanding its components.",
+            "Usage": "Core concepts are built upon the initial setup of MongoDB."
+        },
+        "Guidelines": [
+            "Understand how documents are structured in JSON format.",
+            "Familiarize yourself with the difference between collections and databases."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "db.collection.find",
+                "Description": "Retrieves documents from a collection."
+            },
+            {
+                "Method": "db.collection.drop",
+                "Description": "Removes a collection from the database."
+            }
+        ],
+        "Project": {
+            "Description": "Create a sample database with collections and documents.",
+            "Tasks": [
+                "Define a database schema for users.",
+                "Insert multiple user documents into the collection.",
+                "Query and display all user documents."
+            ]
+        }
+    },
+    {
+        "Title": "CRUD Operations",
+        "Detail": {
+            "Introduction": "CRUD operations are the four basic functions of persistent storage: Create, Read, Update, and Delete.",
+            "Usage": "These operations are essential for managing data in any database system.",
+            "Sample": "Basic CRUD operation syntax:\n```javascript\n// Create\ncollection.insertOne({ ... });\n// Read\ncollection.find({ ... });\n// Update\ncollection.updateOne({ ... }, { $set: { ... } });\n// Delete\ncollection.deleteOne({ ... });\n```"
+        },
+        "Example": {
+            "Description": "Performing all CRUD operations on a collection.",
+            "Explanation": "This example demonstrates how to create, read, update, and delete documents in a MongoDB collection.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    // Create\n    db.collection('users').insertOne({ name: 'Bob', age: 30 }, (err, res) => {\n        console.log('User created:', res.ops[0]);\n    });\n    // Read\n    db.collection('users').find({}).toArray((err, result) => {\n        console.log('All users:', result);\n    });\n    // Update\n    db.collection('users').updateOne({ name: 'Bob' }, { $set: { age: 31 } }, (err, res) => {\n        console.log('User updated');\n    });\n    // Delete\n    db.collection('users').deleteOne({ name: 'Bob' }, (err, res) => {\n        console.log('User deleted');\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Core MongoDB Concepts",
+            "Example": "Understanding documents, collections, and databases.",
+            "Usage": "CRUD operations are the practical application of core concepts."
+        },
+        "Guidelines": [
+            "Always validate data before inserting into the database.",
+            "Use proper error handling for all operations."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "insertOne",
+                "Description": "Inserts a single document into the specified collection."
+            },
+            {
+                "Method": "find",
+                "Description": "Retrieves documents from the collection based on the specified query."
+            },
+            {
+                "Method": "updateOne",
+                "Description": "Updates a single document in the collection that matches the specified filter."
+            },
+            {
+                "Method": "deleteOne",
+                "Description": "Deletes a single document from the collection that matches the specified filter."
+            }
+        ],
+        "Project": {
+            "Description": "Build a simple user management system that implements CRUD operations.",
+            "Tasks": [
+                "Implement functionality to create a user profile.",
+                "Add features to view all profiles.",
+                "Implement update and delete functionality for user profiles.",
+                "Ensure proper error handling and validation."
+            ]
+        }
+    },
+    {
+        "Title": "Advanced Querying",
+        "Detail": {
+            "Introduction": "Advanced querying techniques allow you to filter and sort data more effectively in MongoDB.",
+            "Usage": "These techniques are crucial for applications that require complex data retrieval.",
+            "Sample": "Using projection to return specific fields:\n```javascript\ndb.collection.find({}, { name: 1, age: 1 });\n```"
+        },
+        "Example": {
+            "Description": "Using advanced querying techniques to filter and sort data.",
+            "Explanation": "This example shows how to filter users by age and sort the results.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    db.collection('users').find({ age: { $gte: 18 } }).sort({ age: 1 }).toArray((err, results) => {\n        console.log('Adult users:', results);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "CRUD Operations",
+            "Example": "Performing basic CRUD operations on a collection.",
+            "Usage": "Advanced querying builds on the knowledge of CRUD operations."
+        },
+        "Guidelines": [
+            "Use indexes to optimize query performance.",
+            "Leverage aggregation for more complex queries."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "find",
+                "Description": "Retrieves documents from the collection based on a query."
+            },
+            {
+                "Method": "sort",
+                "Description": "Sorts the results of a query."
+            },
+            {
+                "Method": "project",
+                "Description": "Specifies which fields to include or exclude in the results."
+            }
+        ],
+        "Project": {
+            "Description": "Create a querying system for a user database that allows filtering and sorting.",
+            "Tasks": [
+                "Implement functionality to filter users by age and other attributes.",
+                "Add sorting options to display results in a specific order.",
+                "Display the queried results in a user-friendly format."
+            ]
+        }
+    },
+    {
+        "Title": "Aggregation Framework",
+        "Detail": {
+            "Introduction": "The Aggregation Framework is a powerful tool in MongoDB for processing data in stages, allowing for complex transformations and calculations.",
+            "Usage": "It is used for tasks such as data analysis, reporting, and real-time analytics in applications.",
+            "Sample": "Basic aggregation example:\n```javascript\ndb.collection.aggregate([\n    { $match: { age: { $gte: 18 } } },\n    { $group: { _id: '$city', total: { $sum: 1 } } }\n]);\n```"
+        },
+        "Example": {
+            "Description": "Using the aggregation framework to analyze user data by city.",
+            "Explanation": "This example demonstrates how to group users by city and count them.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    db.collection('users').aggregate([\n        { $match: { age: { $gte: 18 } } },\n        { $group: { _id: '$city', total: { $sum: 1 } } }\n    ]).toArray((err, results) => {\n        console.log('Users by city:', results);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Advanced Querying",
+            "Example": "Using advanced querying techniques to filter and sort data.",
+            "Usage": "Aggregation can leverage the structured data from advanced querying."
+        },
+        "Guidelines": [
+            "Use stages wisely to optimize performance; avoid unnecessary stages.",
+            "Leverage the `$project` stage to include or exclude specific fields in the output."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "aggregate",
+                "Description": "Processes data through a pipeline of stages, enabling complex operations."
+            },
+            {
+                "Method": "$group",
+                "Description": "Groups documents by a specified identifier and applies aggregation functions."
+            },
+            {
+                "Method": "$match",
+                "Description": "Filters documents to pass only the documents that match the specified condition."
+            }
+        ],
+        "Project": {
+            "Description": "Create a reporting dashboard that displays user demographics and activity statistics.",
+            "Tasks": [
+                "Implement aggregation queries to summarize user activity by city and age.",
+                "Display aggregated results in a dashboard format.",
+                "Add filtering options to refine the data presented."
+            ]
+        }
+    },
+    {
+        "Title": "Indexing",
+        "Detail": {
+            "Introduction": "Indexes are special data structures that improve the speed of data retrieval operations on a database table.",
+            "Usage": "Proper indexing is critical for enhancing query performance and ensuring efficient data access.",
+            "Sample": "Creating an index on a collection:\n```javascript\ndb.collection.createIndex({ name: 1 });\n```"
+        },
+        "Example": {
+            "Description": "Using indexing to speed up data retrieval operations.",
+            "Explanation": "This example demonstrates how to create an index and use it to search efficiently.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    // Create an index\n    db.collection('users').createIndex({ name: 1 }, (err, result) => {\n        console.log('Index created:', result);\n    });\n    // Use index in a query\n    db.collection('users').find({ name: 'Alice' }).toArray((err, results) => {\n        console.log('Found users:', results);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Aggregation Framework",
+            "Example": "Using aggregation to perform complex queries.",
+            "Usage": "Indexing can significantly enhance the performance of aggregation queries."
+        },
+        "Guidelines": [
+            "Use compound indexes for queries that filter on multiple fields.",
+            "Be cautious of over-indexing as it may slow down write operations."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "createIndex",
+                "Description": "Creates an index on the specified field(s) in the collection."
+            },
+            {
+                "Method": "dropIndex",
+                "Description": "Removes an index from the collection."
+            },
+            {
+                "Method": "getIndexes",
+                "Description": "Retrieves a list of all indexes in the collection."
+            }
+        ],
+        "Project": {
+            "Description": "Implement indexing for a user database to enhance querying performance.",
+            "Tasks": [
+                "Create indexes on frequently queried fields.",
+                "Test query performance with and without indexes.",
+                "Document the performance improvements."
+            ]
+        }
+    },
+    {
+        "Title": "Data Modeling and Schema Design",
+        "Detail": {
+            "Introduction": "Data modeling in MongoDB involves defining how data is stored and accessed. The schema-less nature of MongoDB allows for flexibility but requires careful planning.",
+            "Usage": "Proper data modeling is essential for optimizing performance and ensuring data integrity in applications.",
+            "Sample": "Modeling a user with embedded documents:\n```javascript\nconst user = {\n    name: 'John Doe',\n    age: 30,\n    address: {\n        street: '123 Main St',\n        city: 'New York',\n        zip: '10001'\n    }\n};\n```"
+        },
+        "Example": {
+            "Description": "Creating a data model for a user with embedded documents and related collections.",
+            "Explanation": "This example illustrates how to model a user and their posts using references to another collection.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    // User model\n    const user = {\n        name: 'Jane Doe',\n        age: 28,\n        posts: []\n    };\n    db.collection('users').insertOne(user, (err, res) => {\n        console.log('User created:', res.ops[0]);\n        // Post model\n        const post = {\n            title: 'My first post',\n            content: 'Hello world!',\n            userId: res.ops[0]._id\n        };\n        db.collection('posts').insertOne(post, (err, res) => {\n            console.log('Post created:', res.ops[0]);\n            client.close();\n        });\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Indexing",
+            "Example": "Understanding how to create indexes for improving query performance.",
+            "Usage": "Data modeling techniques improve the efficiency of CRUD operations and queries."
+        },
+        "Guidelines": [
+            "Consider the read vs. write operations when designing your schema.",
+            "Use references for one-to-many relationships and embedded documents for one-to-one or many-to-one."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "db.collection.insertOne",
+                "Description": "Inserts a single document into the collection, allowing for embedded or referenced structures."
+            },
+            {
+                "Method": "db.collection.find",
+                "Description": "Retrieves documents from the collection, which can be filtered based on relationships."
+            }
+        ],
+        "Project": {
+            "Description": "Design a simple blogging platform that models users and their posts.",
+            "Tasks": [
+                "Create collections for users and posts with appropriate relationships.",
+                "Implement functionality to create, read, and manage posts linked to users.",
+                "Display users along with their posts in a user-friendly format."
+            ]
+        }
+    },
+    {
+        "Title": "MongoDB Transactions",
+        "Detail": {
+            "Introduction": "Transactions in MongoDB allow you to perform multiple operations atomically, ensuring that either all operations succeed or none do.",
+            "Usage": "Transactions are essential for maintaining data integrity in applications where multiple related operations need to be performed.",
+            "Sample": "Using transactions:\n```javascript\nconst session = client.startSession();\nsession.startTransaction();\n```"
+        },
+        "Example": {
+            "Description": "Implementing a transaction to ensure atomic operations.",
+            "Explanation": "This example demonstrates how to use transactions to update user profiles and their associated data.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const session = client.startSession();\n    session.startTransaction();\n    const db = client.db('mydatabase');\n    const user = { name: 'Alice', age: 30 };\n    db.collection('users').insertOne(user, { session }, (err, res) => {\n        if (err) {\n            session.abortTransaction();\n            console.log('Transaction aborted:', err);\n        } else {\n            console.log('User created:', res.ops[0]);\n            // Perform another operation within the same transaction\n            const log = { userId: res.ops[0]._id, action: 'User Created' };\n            db.collection('logs').insertOne(log, { session }, (err, res) => {\n                if (err) {\n                    session.abortTransaction();\n                    console.log('Transaction aborted:', err);\n                } else {\n                    session.commitTransaction();\n                    console.log('Transaction committed');\n                }\n                client.close();\n            });\n        }\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Data Modeling and Schema Design",
+            "Example": "Creating a blogging platform with relationships between users and posts.",
+            "Usage": "Transactions ensure data integrity when multiple related operations are performed."
+        },
+        "Guidelines": [
+            "Keep transactions as short as possible to minimize locking.",
+            "Use transactions for multi-document operations that require atomicity."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "startSession",
+                "Description": "Starts a new session for transactions."
+            },
+            {
+                "Method": "startTransaction",
+                "Description": "Begins a transaction within the session."
+            },
+            {
+                "Method": "commitTransaction",
+                "Description": "Commits all operations performed in the current transaction."
+            },
+            {
+                "Method": "abortTransaction",
+                "Description": "Aborts the current transaction, rolling back any changes."
+            }
+        ],
+        "Project": {
+            "Description": "Implement a user and logging system using transactions.",
+            "Tasks": [
+                "Create a user management system that logs actions.",
+                "Ensure that user creation and logging occur within a single transaction.",
+                "Handle transaction failures gracefully."
+            ]
+        }
+    },
+    {
+        "Title": "Performance Optimization",
+        "Detail": {
+            "Introduction": "Performance optimization in MongoDB involves strategies and best practices to enhance the speed and efficiency of your database operations.",
+            "Usage": "Optimizing performance is crucial for applications with large data sets and high transaction volumes.",
+            "Sample": "Using explain() to analyze query performance:\n```javascript\ndb.collection.find().explain('executionStats');\n```"
+        },
+        "Example": {
+            "Description": "Analyzing query performance using the explain method.",
+            "Explanation": "This example demonstrates how to use the explain method to diagnose slow queries.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    db.collection('users').find({ age: { $gte: 18 } }).explain('executionStats').then((explanation) => {\n        console.log('Query Plan:', explanation);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "MongoDB Transactions",
+            "Example": "Using transactions to ensure data integrity.",
+            "Usage": "Performance optimization techniques can enhance the efficiency of transaction operations."
+        },
+        "Guidelines": [
+            "Use indexes wisely to speed up query performance.",
+            "Monitor database performance using built-in tools and metrics."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "explain",
+                "Description": "Provides information about how MongoDB processes a query."
+            },
+            {
+                "Method": "db.runCommand",
+                "Description": "Executes a command against the database, often used for performance tuning."
+            }
+        ],
+        "Project": {
+            "Description": "Analyze and optimize queries in an existing MongoDB application.",
+            "Tasks": [
+                "Identify slow queries using the explain method.",
+                "Implement appropriate indexes to improve performance.",
+                "Document performance improvements and metrics."
+            ]
+        }
+    },
+    {
+        "Title": "MongoDB Administration",
+        "Detail": {
+            "Introduction": "MongoDB administration involves managing the MongoDB server, monitoring its performance, and ensuring data integrity.",
+            "Usage": "Effective administration is crucial for maintaining a reliable and efficient database environment.",
+            "Sample": "Checking server status:\n```javascript\ndb.serverStatus();\n```"
+        },
+        "Example": {
+            "Description": "Monitoring MongoDB server status and performance metrics.",
+            "Explanation": "This example shows how to retrieve server status information.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('admin');\n    db.command({ serverStatus: 1 }, (err, status) => {\n        console.log('Server Status:', status);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Performance Optimization",
+            "Example": "Analyzing query performance using the explain method.",
+            "Usage": "Understanding server status is critical for effective performance optimization."
+        },
+        "Guidelines": [
+            "Regularly monitor server performance metrics.",
+            "Set up alerts for critical metrics like memory usage and disk space."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "serverStatus",
+                "Description": "Returns a document that contains information about the state of the server."
+            },
+            {
+                "Method": "db.currentOp",
+                "Description": "Returns information about the operations currently running on the server."
+            },
+            {
+                "Method": "db.repairDatabase",
+                "Description": "Repairs the database and ensures data integrity."
+            }
+        ],
+        "Project": {
+            "Description": "Set up monitoring for a MongoDB instance.",
+            "Tasks": [
+                "Implement monitoring for server performance metrics.",
+                "Set up alerts for critical performance thresholds.",
+                "Document the monitoring setup and procedures."
+            ]
+        }
+    },
+    {
+        "Title": "MongoDB Atlas (Cloud)",
+        "Detail": {
+            "Introduction": "MongoDB Atlas is a cloud-based service that hosts MongoDB databases, providing scalability and ease of management.",
+            "Usage": "Using Atlas allows developers to focus on building applications without worrying about infrastructure management.",
+            "Sample": "Creating a new cluster in Atlas:\n```javascript\n// This operation is performed through the Atlas UI, not via code.\n```"
+        },
+        "Example": {
+            "Description": "Setting up a MongoDB Atlas cluster.",
+            "Explanation": "This example walks through the steps of creating a new cluster and connecting to it.",
+            "Code": "1. Sign in to MongoDB Atlas.\n2. Click on 'Build a Cluster'.\n3. Select the cloud provider and region.\n4. Configure cluster settings and click 'Create Cluster'.\n5. After the cluster is created, connect to it using the provided connection string."
+        },
+        "Revision": {
+            "Title": "MongoDB Administration",
+            "Example": "Monitoring the local MongoDB server.",
+            "Usage": "Understanding cloud solutions like Atlas is essential for modern database management."
+        },
+        "Guidelines": [
+            "Take advantage of built-in monitoring and backup features in Atlas.",
+            "Use the Atlas UI to manage clusters easily."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "Cluster Creation",
+                "Description": "Create a new cluster using the Atlas web interface."
+            },
+            {
+                "Method": "Atlas UI",
+                "Description": "Use the Atlas user interface for managing databases and clusters."
+            }
+        ],
+        "Project": {
+            "Description": "Deploy a MongoDB database using Atlas.",
+            "Tasks": [
+                "Create a new cluster in MongoDB Atlas.",
+                "Connect to the cluster from a local application.",
+                "Implement basic CRUD operations on the Atlas-hosted database."
+            ]
+        }
+    },
+    {
+        "Title": "Replication",
+        "Detail": {
+            "Introduction": "Replication in MongoDB allows you to maintain copies of data across multiple servers, providing redundancy and high availability.",
+            "Usage": "Replication is critical for disaster recovery and load balancing.",
+            "Sample": "Creating a replica set:\n```javascript\nrs.initiate();\n```"
+        },
+        "Example": {
+            "Description": "Setting up a replica set in MongoDB.",
+            "Explanation": "This example demonstrates how to initialize a replica set and add members.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('admin');\n    db.command({ replSetInitiate: {} }, (err, result) => {\n        console.log('Replica Set Initialized:', result);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "MongoDB Atlas (Cloud)",
+            "Example": "Using cloud solutions like Atlas to manage databases.",
+            "Usage": "Understanding replication enhances the ability to manage data in a distributed system."
+        },
+        "Guidelines": [
+            "Ensure proper network configuration for replica sets.",
+            "Monitor the health of replica set members regularly."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "rs.initiate",
+                "Description": "Initializes a new replica set."
+            },
+            {
+                "Method": "rs.add",
+                "Description": "Adds a member to an existing replica set."
+            },
+            {
+                "Method": "rs.status",
+                "Description": "Returns the status of the replica set."
+            }
+        ],
+        "Project": {
+            "Description": "Set up a MongoDB replica set for high availability.",
+            "Tasks": [
+                "Initialize a replica set with multiple members.",
+                "Test failover by shutting down one member.",
+                "Implement monitoring for the replica set."
+            ]
+        }
+    },
+    {
+        "Title": "Sharding",
+        "Detail": {
+            "Introduction": "Sharding is a method for distributing data across multiple servers, allowing for horizontal scaling of a database.",
+            "Usage": "Sharding is essential for applications with large datasets and high throughput requirements.",
+            "Sample": "Enabling sharding on a collection:\n```javascript\ndb.runCommand({ shardCollection: 'mydb.users', key: { userId: 1 } });\n```"
+        },
+        "Example": {
+            "Description": "Setting up sharding for a MongoDB collection.",
+            "Explanation": "This example demonstrates how to enable sharding on a collection and distribute data across multiple shards.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    // Enable sharding on the database\n    db.admin().runCommand({ enableSharding: 'mydatabase' }, (err, result) => {\n        console.log('Sharding enabled for database:', result);\n        // Enable sharding on the 'users' collection\n        db.runCommand({ shardCollection: 'mydatabase.users', key: { userId: 1 } }, (err, result) => {\n            console.log('Sharding enabled for collection:', result);\n            client.close();\n        });\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Replication",
+            "Example": "Setting up a replica set for high availability.",
+            "Usage": "Understanding sharding is crucial for scaling applications that require large datasets."
+        },
+        "Guidelines": [
+            "Choose an appropriate shard key to ensure even data distribution.",
+            "Monitor shard balance and performance regularly."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "enableSharding",
+                "Description": "Enables sharding on a specified database."
+            },
+            {
+                "Method": "shardCollection",
+                "Description": "Enables sharding on a specified collection."
+            },
+            {
+                "Method": "splitChunk",
+                "Description": "Manually splits a chunk in a sharded collection."
+            }
+        ],
+        "Project": {
+            "Description": "Implement sharding on a MongoDB database to handle large datasets.",
+            "Tasks": [
+                "Set up sharding for a sample database and collection.",
+                "Test data distribution across shards.",
+                "Monitor the performance of sharded queries."
+            ]
+        }
+    },
+    {
+        "Title": "Security",
+        "Detail": {
+            "Introduction": "Security in MongoDB involves implementing measures to protect data from unauthorized access and ensure data integrity.",
+            "Usage": "Proper security practices are crucial for safeguarding sensitive data in applications.",
+            "Sample": "Creating a user with specific roles:\n```javascript\ndb.createUser({ user: 'admin', pwd: 'password', roles: [ { role: 'readWrite', db: 'mydatabase' } ] });\n```"
+        },
+        "Example": {
+            "Description": "Implementing user authentication and role-based access control.",
+            "Explanation": "This example demonstrates how to create a user and assign roles for database access.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    // Create a new user with readWrite role\n    db.command({ createUser: 'admin', pwd: 'password', roles: [ { role: 'readWrite', db: 'mydatabase' } ] }, (err, result) => {\n        console.log('User created:', result);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Sharding",
+            "Example": "Setting up sharding for data distribution.",
+            "Usage": "Understanding security measures is essential for protecting sharded data."
+        },
+        "Guidelines": [
+            "Always use strong passwords and enable authentication.",
+            "Limit user permissions according to the principle of least privilege."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "createUser",
+                "Description": "Creates a new user with specified roles in the database."
+            },
+            {
+                "Method": "grantRolesToUser",
+                "Description": "Grants additional roles to an existing user."
+            },
+            {
+                "Method": "revokeRolesFromUser",
+                "Description": "Revokes roles from an existing user."
+            }
+        ],
+        "Project": {
+            "Description": "Secure a MongoDB database by implementing user authentication and role management.",
+            "Tasks": [
+                "Create multiple users with different roles.",
+                "Test access control by attempting to access restricted collections.",
+                "Document the security measures implemented."
+            ]
+        }
+    },
+    {
+        "Title": "MongoDB Tools",
+        "Detail": {
+            "Introduction": "MongoDB provides several tools to assist in database management, backup, and performance monitoring.",
+            "Usage": "These tools enhance the overall functionality and usability of MongoDB.",
+            "Sample": "Using MongoDB Compass for visual data exploration:\n```bash\n# Open MongoDB Compass and connect to your database.\n```"
+        },
+        "Example": {
+            "Description": "Using MongoDB tools for backup and restore.",
+            "Explanation": "This example demonstrates how to use `mongodump` and `mongorestore` for backup and restoration of databases.",
+            "Code": "```bash\n# Backing up a database\nmongodump --db mydatabase --out /backup/directory\n# Restoring a database\nmongorestore --db mydatabase /backup/directory/mydatabase\n```"
+        },
+        "Revision": {
+            "Title": "Security",
+            "Example": "Implementing user authentication and role management.",
+            "Usage": "Utilizing tools effectively contributes to better database management."
+        },
+        "Guidelines": [
+            "Use MongoDB Compass for a user-friendly data visualization experience.",
+            "Regularly back up your databases using `mongodump`."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "mongodump",
+                "Description": "Creates a binary export of the contents of a database."
+            },
+            {
+                "Method": "mongorestore",
+                "Description": "Restores a database from a binary export."
+            },
+            {
+                "Method": "mongoexport",
+                "Description": "Exports data from a MongoDB collection to a JSON or CSV file."
+            },
+            {
+                "Method": "mongoimport",
+                "Description": "Imports data from a JSON or CSV file into a MongoDB collection."
+            }
+        ],
+        "Project": {
+            "Description": "Utilize MongoDB tools for backup and data manipulation.",
+            "Tasks": [
+                "Perform a backup of your MongoDB database.",
+                "Restore the database from the backup.",
+                "Export and import data using `mongoexport` and `mongoimport`."
+            ]
+        }
+    },
+    {
+        "Title": "Integration with Programming Languages",
+        "Detail": {
+            "Introduction": "MongoDB can be integrated with various programming languages, making it versatile for different application needs.",
+            "Usage": "This integration allows developers to interact with MongoDB using their preferred programming languages.",
+            "Sample": "Connecting to MongoDB using Node.js:\n```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => { /*...*/ });\n```"
+        },
+        "Example": {
+            "Description": "Using MongoDB with Node.js to perform database operations.",
+            "Explanation": "This example demonstrates how to connect to a MongoDB instance and perform a simple operation.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    db.collection('users').insertOne({ name: 'Alice', age: 25 }, (err, res) => {\n        console.log('User inserted:', res.ops[0]);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "MongoDB Tools",
+            "Example": "Using MongoDB tools for backup and restoration.",
+            "Usage": "Integrating MongoDB with applications enhances its functionality."
+        },
+        "Guidelines": [
+            "Choose the appropriate MongoDB driver for your programming language.",
+            "Follow best practices for connection management and error handling."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "MongoClient.connect",
+                "Description": "Establishes a connection to the MongoDB server."
+            },
+            {
+                "Method": "db.collection.find",
+                "Description": "Retrieves documents from a collection."
+            }
+        ],
+        "Project": {
+            "Description": "Build a simple application that integrates with MongoDB using a programming language of your choice.",
+            "Tasks": [
+                "Connect to a MongoDB database from your application.",
+                "Implement CRUD operations within the application.",
+                "Document the integration process and any challenges faced."
+            ]
+        }
+    },
+    {
+        "Title": "MongoDB and Big Data",
+        "Detail": {
+            "Introduction": "MongoDB is often used in big data applications due to its scalability and performance.",
+            "Usage": "It can handle large volumes of data and provides real-time analytics capabilities.",
+            "Sample": "Storing large datasets in MongoDB:\n```javascript\ndb.collection.insertMany([{ /* data */ }, { /* data */ }]);\n```"
+        },
+        "Example": {
+            "Description": "Handling large datasets with MongoDB for big data applications.",
+            "Explanation": "This example demonstrates how to insert multiple documents into a collection, simulating a large dataset.",
+            "Code": "```javascript\nconst MongoClient = require('mongodb').MongoClient;\nconst url = 'mongodb://localhost:27017';\nMongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {\n    const db = client.db('mydatabase');\n    const largeDataset = [];\n    for (let i = 0; i < 100000; i++) {\n        largeDataset.push({ name: `User ${i}`, age: Math.floor(Math.random() * 100) });\n    }\n    db.collection('users').insertMany(largeDataset, (err, res) => {\n        console.log('Inserted documents:', res.insertedCount);\n        client.close();\n    });\n});\n```"
+        },
+        "Revision": {
+            "Title": "Integration with Programming Languages",
+            "Example": "Using Node.js to interact with MongoDB.",
+            "Usage": "Leveraging MongoDB's capabilities for big data applications enhances data processing and analytics."
+        },
+        "Guidelines": [
+            "Use appropriate schemas to optimize storage and retrieval of large datasets.",
+            "Consider sharding for distributing large datasets across multiple servers."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "insertMany",
+                "Description": "Inserts multiple documents into a collection in one operation."
+            },
+            {
+                "Method": "aggregate",
+                "Description": "Processes data records and returns computed results, useful for analytics."
+            }
+        ],
+        "Project": {
+            "Description": "Implement a simple big data application using MongoDB.",
+            "Tasks": [
+                "Generate a large dataset and store it in MongoDB.",
+                "Implement aggregation queries to analyze the data.",
+                "Visualize the results using a suitable front-end technology."
+            ]
+        }
+    },
+    {
+        "Title": "MongoDB Ecosystem",
+        "Detail": {
+            "Introduction": "The MongoDB ecosystem includes various tools, libraries, and frameworks that enhance the functionality and usability of MongoDB.",
+            "Usage": "These components support development, monitoring, and management of MongoDB databases.",
+            "Sample": "Integrating MongoDB with Mongoose for Node.js:\n```javascript\nconst mongoose = require('mongoose');\nmongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });\n```"
+        },
+        "Example": {
+            "Description": "Using Mongoose to interact with MongoDB in a Node.js application.",
+            "Explanation": "This example demonstrates how to define a schema and model using Mongoose.",
+            "Code": "```javascript\nconst mongoose = require('mongoose');\nmongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });\n\nconst userSchema = new mongoose.Schema({\n    name: String,\n    age: Number\n});\n\nconst User = mongoose.model('User', userSchema);\n\nconst user = new User({ name: 'Alice', age: 25 });\nuser.save().then(() => console.log('User saved!')).catch(err => console.log(err));\n```"
+        },
+        "Revision": {
+            "Title": "MongoDB and Big Data",
+            "Example": "Handling large datasets with MongoDB.",
+            "Usage": "Understanding the ecosystem is essential for leveraging MongoDB's full potential."
+        },
+        "Guidelines": [
+            "Explore third-party libraries that facilitate interaction with MongoDB.",
+            "Stay updated with new tools and features in the MongoDB ecosystem."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "connect",
+                "Description": "Establishes a connection to the MongoDB database using Mongoose."
+            },
+            {
+                "Method": "model",
+                "Description": "Creates a Mongoose model that represents a collection in the database."
+            }
+        ],
+        "Project": {
+            "Description": "Build a Node.js application using Mongoose to manage MongoDB data.",
+            "Tasks": [
+                "Define data models using Mongoose schemas.",
+                "Implement CRUD operations using Mongoose.",
+                "Document the application structure and functionality."
+            ]
+        }
+    },
+    {
+        "Title": "Troubleshooting and Best Practices",
+        "Detail": {
+            "Introduction": "Troubleshooting in MongoDB involves identifying and resolving issues that arise during database operations.",
+            "Usage": "Following best practices can help prevent common issues and ensure optimal performance.",
+            "Sample": "Checking the MongoDB logs for errors:\n```bash\n# Navigate to the MongoDB log file and check for errors.\ncat /var/log/mongodb/mongod.log\n```"
+        },
+        "Example": {
+            "Description": "Identifying and resolving common MongoDB issues.",
+            "Explanation": "This example demonstrates how to check logs for errors and apply best practices.",
+            "Code": "```bash\n# Monitor MongoDB logs for issues\ntail -f /var/log/mongodb/mongod.log\n```"
+        },
+        "Revision": {
+            "Title": "MongoDB Ecosystem",
+            "Example": "Using Mongoose for easier data management.",
+            "Usage": "Effective troubleshooting and adherence to best practices contribute to a stable MongoDB environment."
+        },
+        "Guidelines": [
+            "Regularly monitor logs and performance metrics.",
+            "Backup data regularly and test restoration procedures."
+        ],
+        "CommonMethods": [
+            {
+                "Method": "tail",
+                "Description": "Displays the last part of the MongoDB log file, allowing for real-time monitoring."
+            },
+            {
+                "Method": "repairDatabase",
+                "Description": "Repairs the database and can resolve some corruption issues."
+            }
+        ],
+        "Project": {
+            "Description": "Create a troubleshooting guide for common MongoDB issues.",
+            "Tasks": [
+                "Document common issues and their resolutions.",
+                "Implement best practices for database management.",
+                "Set up monitoring and alerting for critical metrics."
+            ]
+        }
+    }
+]

@@ -1,0 +1,1134 @@
+[
+    {
+      "Title": "Introduction to Node.js",
+      "Detail": {
+        "Introduction": "Node.js is a powerful JavaScript runtime built on Chrome's V8 engine, enabling JavaScript to be used for server-side programming. This allows developers to create scalable network applications using JavaScript, which is traditionally a client-side language.",
+        "Usage": "Node.js is widely used for building web servers, RESTful APIs, and real-time applications like chat services and online gaming.",
+        "Sample": "const http = require('http');"
+      },
+      "Example": {
+        "Description": "Creating a simple HTTP server with Node.js.",
+        "Explanation": "This code sets up a basic server that listens on port 3000 and responds with a greeting message.",
+        "Code": "const http = require('http');\n\nconst server = http.createServer((req, res) => {\n    res.statusCode = 200;\n    res.setHeader('Content-Type', 'text/plain');\n    res.end('Hello, Node.js!\\n');\n});\n\nserver.listen(3000, () => {\n    console.log('Server running at http://localhost:3000/');\n});"
+      },
+      "Revision": {
+        "Title": "N/A",
+        "Example": "N/A",
+        "Usage": "N/A"
+      },
+      "Guidelines": [
+        "Use Node.js for I/O-bound tasks due to its non-blocking architecture.",
+        "Familiarize yourself with the Node.js documentation for better understanding."
+      ],
+      "CommonMethods": [
+        {
+          "Method": "require",
+          "Description": "Used to import modules, enabling code modularity."
+        },
+        {
+          "Method": "createServer",
+          "Description": "Creates an HTTP server that listens to requests."
+        }
+      ],
+      "Project": {
+        "Description": "Build a simple Node.js web server that handles HTTP requests.",
+        "Tasks": [
+          "Set up the Node.js environment.",
+          "Create a server that responds to various requests."
+        ]
+      }
+    },
+    {
+      "Title": "Installing Node.js and NPM",
+      "Detail": {
+        "Introduction": "Node Package Manager (NPM) is a crucial tool that comes bundled with Node.js. It allows developers to manage project dependencies easily.",
+        "Usage": "NPM is widely used for installing libraries and frameworks, managing project dependencies, and sharing code.",
+        "Sample": "npm install express"
+      },
+      "Example": {
+        "Description": "Installing the Express framework using NPM.",
+        "Explanation": "This command installs Express, a popular web framework for Node.js.",
+        "Code": "npm install express"
+      },
+      "Revision": {
+        "Title": "Introduction to Node.js",
+        "Example": "Creating a simple HTTP server.",
+        "Usage": "Using NPM to install Express simplifies the server creation process."
+      },
+      "Guidelines": [
+        "Use `npm init` to create a package.json file for project management.",
+        "Regularly update your dependencies with `npm update`."
+      ],
+      "CommonMethods": [
+        {
+          "Method": "npm install",
+          "Description": "Installs a package and its dependencies."
+        },
+        {
+          "Method": "npm uninstall",
+          "Description": "Removes a package from your project."
+        }
+      ],
+      "Project": {
+        "Description": "Initialize a Node.js project and install necessary packages.",
+        "Tasks": [
+          "Create a new project directory and initialize with npm.",
+          "Install Express and set up a basic server."
+        ]
+      }
+    },
+    {
+      "Title": "Understanding the Node.js Event Loop",
+      "Detail": {
+        "Introduction": "The event loop is a key feature of Node.js that allows for non-blocking I/O operations, enabling high concurrency.",
+        "Usage": "Understanding the event loop is essential for writing efficient Node.js applications that can handle multiple requests simultaneously.",
+        "Sample": "setTimeout(() => { console.log('Hello!'); }, 1000);"
+      },
+      "Example": {
+        "Description": "Demonstrating the event loop with asynchronous operations.",
+        "Explanation": "This example shows how the event loop processes asynchronous tasks.",
+        "Code": "console.log('Start');\nsetTimeout(() => {\n    console.log('Timeout!');\n}, 2000);\nconsole.log('End');"
+      },
+      "Revision": {
+        "Title": "Installing Node.js and NPM",
+        "Example": "Using npm to install packages.",
+        "Usage": "Asynchronous operations are managed through the event loop, enhancing package usage."
+      },
+      "Guidelines": [
+        "Avoid blocking the event loop with synchronous code.",
+        "Utilize asynchronous methods for I/O operations."
+      ],
+      "CommonMethods": [
+        {
+          "Method": "setTimeout",
+          "Description": "Executes a function after a specified delay."
+        },
+        {
+          "Method": "setInterval",
+          "Description": "Calls a function repeatedly at specified intervals."
+        }
+      ],
+      "Project": {
+        "Description": "Create a timer application that logs messages at intervals.",
+        "Tasks": [
+          "Use setTimeout to log a message after a delay.",
+          "Implement setInterval to log messages at regular intervals."
+        ]
+      }
+    },
+    {
+      "Title": "Core Modules in Node.js",
+      "Detail": {
+        "Introduction": "Node.js comes with built-in modules that provide essential functionalities, such as file system access, HTTP requests, and more.",
+        "Usage": "Core modules allow developers to build applications without relying on external libraries, improving performance and security.",
+        "Sample": "const fs = require('fs');"
+      },
+      "Example": {
+        "Description": "Using the 'fs' module to read a file.",
+        "Explanation": "This example demonstrates how to asynchronously read a file using the fs module.",
+        "Code": "const fs = require('fs');\n\nfs.readFile('example.txt', 'utf8', (err, data) => {\n    if (err) throw err;\n    console.log(data);\n});"
+      },
+      "Revision": {
+        "Title": "Understanding the Node.js Event Loop",
+        "Example": "Using asynchronous methods.",
+        "Usage": "Core modules effectively utilize the event loop to perform I/O operations."
+      },
+      "Guidelines": [
+        "Familiarize yourself with available core modules in Node.js.",
+        "Leverage core modules to reduce dependencies and improve performance."
+      ],
+      "CommonMethods": [
+        {
+          "Method": "require",
+          "Description": "Imports core modules for use in your application."
+        },
+        {
+          "Method": "readdir",
+          "Description": "Reads the contents of a directory asynchronously."
+        }
+      ],
+      "Project": {
+        "Description": "Create a file reading application that displays the contents of a specified file.",
+        "Tasks": [
+          "Create a text file with some content.",
+          "Read the file using the fs module and display its content."
+        ]
+      }
+    },
+    {
+      "Title": "Working with the File System (fs)",
+      "Detail": {
+        "Introduction": "The 'fs' module in Node.js provides an API for file system operations, allowing you to read, write, and manipulate files and directories.",
+        "Usage": "File system operations are crucial for applications that involve data storage, backups, and file manipulation.",
+        "Sample": "fs.writeFile('output.txt', 'Hello, World!', err => { });"
+      },
+      "Example": {
+        "Description": "Writing data to a file using the 'fs' module.",
+        "Explanation": "This example shows how to write text to a file asynchronously.",
+        "Code": "const fs = require('fs');\n\nfs.writeFile('output.txt', 'Hello, World!', err => {\n    if (err) throw err;\n    console.log('File has been saved!');\n});"
+      },
+      "Revision": {
+        "Title": "Core Modules in Node.js",
+        "Example": "Using the 'fs' module to read files.",
+        "Usage": "The fs module is a core module that simplifies file operations."
+      },
+      "Guidelines": [
+        "Always handle errors during file operations to prevent crashes.",
+        "Consider using promises or async/await for cleaner code."
+      ],
+      "CommonMethods": [
+        {
+          "Method": "appendFile",
+          "Description": "Appends data to a file, creating the file if it does not exist."
+        },
+        {
+          "Method": "unlink",
+          "Description": "Deletes a file asynchronously."
+        }
+      ],
+      "Project": {
+        "Description": "Create a note-taking application that allows users to save notes to a file.",
+        "Tasks": [
+          "Implement functionality to write new notes to a file.",
+          "Add the ability to read existing notes from the file."
+        ]
+      }
+    },
+    {
+      "Title": "Handling HTTP Requests and Responses",
+      "Detail": {
+        "Introduction": "Handling HTTP requests and responses is a fundamental part of building web applications with Node.js.",
+        "Usage": "This knowledge is essential for creating web servers, RESTful APIs, and managing data exchange between clients and servers.",
+        "Sample": "res.writeHead(200, {'Content-Type': 'text/html'});"
+      },
+      "Example": {
+        "Description": "Handling GET requests in Node.js.",
+        "Explanation": "This example demonstrates how to handle GET requests and send responses using the http module.",
+        "Code": "const http = require('http');\n\nconst server = http.createServer((req, res) => {\n    if (req.method === 'GET') {\n        res.writeHead(200, {'Content-Type': 'text/plain'});\n        res.end('GET request received!');\n    }\n});\n\nserver.listen(3000, () => {\n    console.log('Server running at http://localhost:3000/');\n});"
+      },
+      "Revision": {
+        "Title": "Working with the File System (fs)",
+        "Example": "Writing data to a file.",
+        "Usage": "HTTP responses can be used to send data read from files, enhancing interactivity."
+      },
+      "Guidelines": [
+        "Use appropriate HTTP status codes for responses.",
+        "Always validate incoming request data to ensure security."
+      ],
+      "CommonMethods": [
+        {
+          "Method": "writeHead",
+          "Description": "Sets the response HTTP status code and headers."
+        },
+        {
+          "Method": "end",
+          "Description": "Ends the response process and sends the response to the client."
+        }
+      ],
+      "Project": {
+        "Description": "Build a simple web server that processes both GET and POST requests.",
+        "Tasks": [
+          "Handle GET requests to return a welcome message.",
+          "Implement handling for POST requests to accept user input."
+        ]
+      }
+    },
+    {
+        "Title": "Asynchronous Programming in Node.js",
+        "Detail": {
+          "Introduction": "Asynchronous programming is a core concept in Node.js that allows for non-blocking operations, improving application performance. It allows Node.js to handle multiple tasks simultaneously without waiting for each task to complete.",
+          "Usage": "Asynchronous programming is vital for handling I/O operations without freezing the application, making it ideal for server-side applications that need to manage many requests at once.",
+          "Sample": "const data = await fs.promises.readFile('file.txt', 'utf8');"
+        },
+        "Example": {
+          "Description": "Using async/await for asynchronous file reading.",
+          "Explanation": "The following example demonstrates how to read a file asynchronously using async/await syntax, handling errors with try/catch.",
+          "Code": "const fs = require('fs/promises');\n\nasync function readFile() {\n    try {\n        const data = await fs.readFile('example.txt', 'utf8');\n        console.log(data);\n    } catch (err) {\n        console.error('Error reading file:', err);\n    }\n}\n\nreadFile();"
+        },
+        "Revision": {
+          "Title": "Handling HTTP Requests and Responses",
+          "Example": "Building a server that processes requests asynchronously.",
+          "Usage": "Asynchronous programming is essential in handling multiple requests in a server without blocking other operations."
+        },
+        "Guidelines": [
+          "Always handle errors in asynchronous code to prevent unhandled promise rejections.",
+          "Use async/await for cleaner and more readable asynchronous code compared to callbacks."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "Promise",
+            "Description": "An object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value."
+          },
+          {
+            "Method": "async/await",
+            "Description": "A syntactic sugar built on top of promises that allows you to write asynchronous code that looks synchronous."
+          }
+        ],
+        "Project": {
+          "Description": "Create a simple file reader application that reads and displays contents of a file asynchronously.",
+          "Tasks": [
+            "Implement functionality to read a text file using async/await.",
+            "Handle potential errors in file reading gracefully."
+          ]
+        }
+      },
+      {
+        "Title": "Streams and Buffers",
+        "Detail": {
+          "Introduction": "Streams and buffers are critical components in Node.js for handling large amounts of data efficiently. Streams allow data to be processed piece by piece rather than all at once, while buffers are used to temporarily store data.",
+          "Usage": "Streams are used in scenarios such as reading files, making HTTP requests, or processing data from a database. They allow you to handle data without consuming excessive memory.",
+          "Sample": "const fs = require('fs');\nconst stream = fs.createReadStream('file.txt');"
+        },
+        "Example": {
+          "Description": "Reading a file using streams.",
+          "Explanation": "The following example demonstrates how to read a file using a readable stream and process chunks of data as they arrive.",
+          "Code": "const fs = require('fs');\n\nconst stream = fs.createReadStream('example.txt', { encoding: 'utf8' });\n\nstream.on('data', (chunk) => {\n    console.log('Received chunk:', chunk);\n});\n\nstream.on('end', () => {\n    console.log('Finished reading the file.');\n});"
+        },
+        "Revision": {
+          "Title": "Asynchronous Programming in Node.js",
+          "Example": "Using async/await to read files.",
+          "Usage": "Streams complement asynchronous programming by allowing data to be processed as it is being read, reducing memory usage."
+        },
+        "Guidelines": [
+          "Use streams when working with large files to reduce memory footprint.",
+          "Handle stream events such as 'error', 'data', and 'end' for robust implementations."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "createReadStream",
+            "Description": "Creates a readable stream for reading data from a file."
+          },
+          {
+            "Method": "pipe",
+            "Description": "Pipes the output from one stream to another, allowing data to flow seamlessly."
+          }
+        ],
+        "Project": {
+          "Description": "Build a file processing application that reads a large file and processes its data in chunks.",
+          "Tasks": [
+            "Implement a readable stream to read a large text file.",
+            "Process each chunk of data as it is read and log it to the console."
+          ]
+        }
+      },
+      {
+        "Title": "Working with Path and URL Modules",
+        "Detail": {
+          "Introduction": "The path and URL modules in Node.js provide utilities for working with file and URL paths, enabling developers to handle file system paths and URL manipulations safely and easily.",
+          "Usage": "These modules are used commonly when working with file systems, handling file uploads, and parsing or constructing URLs in web applications.",
+          "Sample": "const path = require('path');\nconst url = require('url');"
+        },
+        "Example": {
+          "Description": "Using the path module to manipulate file paths.",
+          "Explanation": "The following example demonstrates how to join and resolve paths using the path module.",
+          "Code": "const path = require('path');\n\nconst directory = 'documents';\nconst fileName = 'file.txt';\nconst fullPath = path.join(__dirname, directory, fileName);\n\nconsole.log('Full Path:', fullPath);"
+        },
+        "Revision": {
+          "Title": "Streams and Buffers",
+          "Example": "Reading files using streams.",
+          "Usage": "Path manipulation is crucial when dealing with file paths in streams and buffers to ensure accurate file access."
+        },
+        "Guidelines": [
+          "Use path.join() to construct paths to avoid issues with different operating system path separators.",
+          "Always validate URLs before using them to prevent errors in web applications."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "join",
+            "Description": "Joins all given path segments together using the platform-specific separator."
+          },
+          {
+            "Method": "parse",
+            "Description": "Parses a URL string into an object containing the protocol, host, path, and other components."
+          }
+        ],
+        "Project": {
+          "Description": "Create a file path manager that allows users to input file names and returns the absolute path.",
+          "Tasks": [
+            "Implement a function to join paths using user input.",
+            "Display the resolved absolute path of the specified file."
+          ]
+        }
+      },
+      {
+        "Title": "EventEmitter and Custom Events",
+        "Detail": {
+          "Introduction": "The EventEmitter class is a core part of Node.js that allows developers to create custom events and handle them with callback functions. This is essential for building event-driven applications.",
+          "Usage": "EventEmitters are used in various scenarios, such as handling user interactions, responding to IO events, or creating custom events in applications.",
+          "Sample": "const EventEmitter = require('events');"
+        },
+        "Example": {
+          "Description": "Creating and using a custom event.",
+          "Explanation": "The following example demonstrates how to create a custom EventEmitter and listen for an event.",
+          "Code": "const EventEmitter = require('events');\n\nclass MyEmitter extends EventEmitter {}\n\nconst myEmitter = new MyEmitter();\n\nmyEmitter.on('event', () => {\n    console.log('An event occurred!');\n});\n\nmyEmitter.emit('event');"
+        },
+        "Revision": {
+          "Title": "Working with Path and URL Modules",
+          "Example": "Manipulating file paths.",
+          "Usage": "Custom events can be triggered on actions like file uploads, enhancing user interaction."
+        },
+        "Guidelines": [
+          "Use EventEmitter for creating modular and maintainable code by separating concerns.",
+          "Avoid memory leaks by removing listeners when they are no longer needed."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "on",
+            "Description": "Adds a listener to the end of the listeners array for the specified event."
+          },
+          {
+            "Method": "emit",
+            "Description": "Triggers the specified event, calling all the listeners attached to it."
+          }
+        ],
+        "Project": {
+          "Description": "Build a simple event-driven application that emits custom events based on user actions.",
+          "Tasks": [
+            "Create a custom EventEmitter to handle user interactions.",
+            "Emit events based on specific actions like button clicks."
+          ]
+        }
+      },
+      {
+        "Title": "Creating and Managing Servers with http",
+        "Detail": {
+          "Introduction": "Node.js provides an efficient way to create HTTP servers using the built-in http module. This is essential for serving web applications and handling client requests.",
+          "Usage": "Creating HTTP servers is foundational for web development, enabling the handling of requests and responses in web applications.",
+          "Sample": "const http = require('http');"
+        },
+        "Example": {
+          "Description": "Creating a basic HTTP server that responds to requests.",
+          "Explanation": "This example shows how to create a simple server that listens on a specified port and responds with a message.",
+          "Code": "const http = require('http');\n\nconst server = http.createServer((req, res) => {\n    res.statusCode = 200;\n    res.setHeader('Content-Type', 'text/plain');\n    res.end('Hello, World!\\n');\n});\n\nserver.listen(3000, () => {\n    console.log('Server running at http://localhost:3000/');\n});"
+        },
+        "Revision": {
+          "Title": "Handling HTTP Requests and Responses",
+          "Example": "Handling GET requests with HTTP servers.",
+          "Usage": "Understanding how to create servers builds on the knowledge of managing HTTP requests and responses."
+        },
+        "Guidelines": [
+          "Use appropriate response status codes and headers.",
+          "Ensure the server listens on the correct port to avoid conflicts."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "createServer",
+            "Description": "Creates an HTTP server that listens for requests."
+          },
+          {
+            "Method": "listen",
+            "Description": "Starts the server and listens for connections on the specified port."
+          }
+        ],
+        "Project": {
+          "Description": "Build a web server that serves static files and handles different routes.",
+          "Tasks": [
+            "Implement routing to serve different pages based on the URL.",
+            "Handle 404 errors for unsupported routes."
+          ]
+        }
+      },
+      {
+        "Title": "Building RESTful APIs with Node.js",
+        "Detail": {
+          "Introduction": "RESTful APIs allow communication between clients and servers over HTTP using standard methods such as GET, POST, PUT, and DELETE. Node.js is particularly suited for creating RESTful APIs due to its non-blocking architecture.",
+          "Usage": "RESTful APIs are widely used in modern web applications to enable interaction with backend services.",
+          "Sample": "app.get('/api/items', (req, res) => { });"
+        },
+        "Example": {
+          "Description": "Creating a simple RESTful API with Express.",
+          "Explanation": "This example demonstrates how to set up an API that handles GET and POST requests.",
+          "Code": "const express = require('express');\nconst app = express();\napp.use(express.json());\n\nlet items = [];\n\napp.get('/api/items', (req, res) => {\n    res.json(items);\n});\n\napp.post('/api/items', (req, res) => {\n    items.push(req.body);\n    res.status(201).json(req.body);\n});\n\napp.listen(3000, () => {\n    console.log('API running at http://localhost:3000/api/items');\n});"
+        },
+        "Revision": {
+          "Title": "Creating and Managing Servers with http",
+          "Example": "Setting up a server to handle requests.",
+          "Usage": "Building APIs extends the fundamental concepts of managing servers by adding structured endpoints for data manipulation."
+        },
+        "Guidelines": [
+          "Follow RESTful principles when designing APIs for consistency and usability.",
+          "Use proper status codes to indicate the result of requests."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "get",
+            "Description": "Defines a route for handling GET requests."
+          },
+          {
+            "Method": "post",
+            "Description": "Defines a route for handling POST requests."
+          }
+        ],
+        "Project": {
+          "Description": "Create a simple API for a to-do list application.",
+          "Tasks": [
+            "Implement endpoints for adding, retrieving, updating, and deleting to-do items.",
+            "Use an array to store the items temporarily."
+          ]
+        }
+      },
+      {
+        "Title": "Middleware in Node.js Applications",
+        "Detail": {
+          "Introduction": "Middleware functions are functions that have access to the request, response, and the next middleware function in the application’s request-response cycle. They are essential for processing requests and responses in Express applications.",
+          "Usage": "Middleware is used for tasks such as logging, authentication, error handling, and parsing request bodies.",
+          "Sample": "app.use(express.json());"
+        },
+        "Example": {
+          "Description": "Implementing middleware for logging requests.",
+          "Explanation": "This example demonstrates how to create a simple logging middleware.",
+          "Code": "const express = require('express');\nconst app = express();\n\napp.use((req, res, next) => {\n    console.log(`${req.method} ${req.url}`);\n    next();\n});\n\napp.get('/', (req, res) => {\n    res.send('Hello, Middleware!');\n});\n\napp.listen(3000, () => {\n    console.log('Server running at http://localhost:3000/');\n});"
+        },
+        "Revision": {
+          "Title": "Building RESTful APIs with Node.js",
+          "Example": "Creating APIs with structured routes.",
+          "Usage": "Middleware enhances API functionality by enabling common tasks to be performed on incoming requests."
+        },
+        "Guidelines": [
+          "Use middleware to separate concerns and improve code organization.",
+          "Be cautious with the order of middleware; it affects how requests are processed."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "use",
+            "Description": "Mounts middleware functions at a specified path."
+          },
+          {
+            "Method": "next",
+            "Description": "Passes control to the next middleware function."
+          }
+        ],
+        "Project": {
+          "Description": "Implement middleware for a user authentication system.",
+          "Tasks": [
+            "Create middleware to check if a user is authenticated before allowing access to certain routes.",
+            "Log all incoming requests for monitoring."
+          ]
+        }
+      },
+      {
+        "Title": "Working with Databases (e.g., MongoDB, MySQL, PostgreSQL)",
+        "Detail": {
+          "Introduction": "Databases are critical for storing and retrieving persistent data in applications. Node.js can connect to various databases, including NoSQL and SQL databases.",
+          "Usage": "Database connectivity is essential for applications that require data persistence, such as user accounts, products, and inventories.",
+          "Sample": "const mongoose = require('mongoose');"
+        },
+        "Example": {
+          "Description": "Connecting to a MongoDB database using Mongoose.",
+          "Explanation": "This example demonstrates how to connect to a MongoDB database and define a simple schema.",
+          "Code": "const mongoose = require('mongoose');\n\nmongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })\n    .then(() => console.log('MongoDB connected!'))\n    .catch(err => console.error('MongoDB connection error:', err));\n\nconst Schema = mongoose.Schema;\nconst ItemSchema = new Schema({\n    name: String,\n    quantity: Number\n});\n\nconst Item = mongoose.model('Item', ItemSchema);"
+        },
+        "Revision": {
+          "Title": "Middleware in Node.js Applications",
+          "Example": "Using middleware to process requests.",
+          "Usage": "Database interactions often require middleware for request handling, such as validating input before performing CRUD operations."
+        },
+        "Guidelines": [
+          "Use ORM/ODM libraries like Mongoose or Sequelize for easier database interactions.",
+          "Always validate and sanitize user input before saving it to the database."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "connect",
+            "Description": "Establishes a connection to the specified database."
+          },
+          {
+            "Method": "model",
+            "Description": "Creates a model from a defined schema for interacting with the database."
+          }
+        ],
+        "Project": {
+          "Description": "Build a simple inventory management API that interacts with a MongoDB database.",
+          "Tasks": [
+            "Implement CRUD operations for managing inventory items.",
+            "Utilize Mongoose for schema definitions and model interactions."
+          ]
+        }
+      },
+      {
+        "Title": "File Uploads and Data Streaming",
+        "Detail": {
+          "Introduction": "Handling file uploads is a common requirement in web applications. Node.js supports file uploads through various libraries and the built-in streams functionality. This capability is essential for applications that require users to submit files, such as profile pictures, documents, or media.",
+          "Usage": "File uploads are relevant in applications that require user input, such as social media platforms, e-commerce sites, and document management systems.",
+          "Sample": "const multer = require('multer');"
+        },
+        "Example": {
+          "Description": "Handling file uploads with Multer.",
+          "Explanation": "This example shows how to set up a file upload endpoint using Multer for handling multipart/form-data.",
+          "Code": "const express = require('express');\nconst multer = require('multer');\nconst upload = multer({ dest: 'uploads/' });\n\nconst app = express();\n\napp.post('/upload', upload.single('file'), (req, res) => {\n    res.send(`File uploaded: ${req.file.originalname}`);\n});\n\napp.listen(3000, () => {\n    console.log('File upload server running at http://localhost:3000/upload');\n});"
+        },
+        "Revision": {
+          "Title": "Working with Databases (e.g., MongoDB, MySQL, PostgreSQL)",
+          "Example": "Connecting to MongoDB and defining a schema.",
+          "Usage": "Just like handling data persistence in databases, file uploads require handling and storing data effectively."
+        },
+        "Guidelines": [
+          "Use Multer or similar libraries to simplify file upload handling.",
+          "Validate file types and sizes to prevent malicious uploads."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "single",
+            "Description": "Middleware function to handle a single file upload."
+          },
+          {
+            "Method": "array",
+            "Description": "Middleware function to handle multiple file uploads."
+          }
+        ],
+        "Project": {
+          "Description": "Create a file upload application that allows users to upload and view files.",
+          "Tasks": [
+            "Set up an endpoint for file uploads.",
+            "Display a list of uploaded files with links to download."
+          ]
+        }
+      },
+      {
+        "Title": "Authentication and Authorization in Node.js",
+        "Detail": {
+          "Introduction": "Authentication and authorization are critical components of web applications. Authentication verifies the identity of users, while authorization determines what resources a user can access based on their permissions.",
+          "Usage": "These concepts are essential for applications that require user accounts, such as social media platforms, online banking, and e-commerce sites.",
+          "Sample": "const jwt = require('jsonwebtoken');"
+        },
+        "Example": {
+          "Description": "Implementing JWT authentication.",
+          "Explanation": "This example demonstrates how to authenticate users and protect routes using JSON Web Tokens (JWT).",
+          "Code": "const express = require('express');\nconst jwt = require('jsonwebtoken');\nconst app = express();\napp.use(express.json());\n\nconst users = [{ id: 1, username: 'user', password: 'pass' }];\n\napp.post('/login', (req, res) => {\n    const { username, password } = req.body;\n    const user = users.find(u => u.username === username && u.password === password);\n    if (user) {\n        const token = jwt.sign({ id: user.id }, 'secretkey');\n        res.json({ token });\n    } else {\n        res.status(401).send('Unauthorized');\n    }\n});\n\napp.get('/protected', (req, res) => {\n    const token = req.headers['authorization'];\n    jwt.verify(token, 'secretkey', (err, user) => {\n        if (err) return res.sendStatus(403);\n        res.send('Protected content');\n    });\n});\n\napp.listen(3000, () => {\n    console.log('Auth server running at http://localhost:3000');\n});"
+        },
+        "Revision": {
+          "Title": "File Uploads and Data Streaming",
+          "Example": "Handling file uploads securely.",
+          "Usage": "Just as file uploads require validation and security measures, authentication must ensure that user access is controlled and secure."
+        },
+        "Guidelines": [
+          "Always hash passwords before storing them in the database.",
+          "Use HTTPS to secure data transmitted over the network."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "sign",
+            "Description": "Creates a new token using a secret key and payload."
+          },
+          {
+            "Method": "verify",
+            "Description": "Verifies a given token against a secret key."
+          }
+        ],
+        "Project": {
+          "Description": "Build a simple application that includes user registration, login, and protected routes.",
+          "Tasks": [
+            "Implement user registration with password hashing.",
+            "Create login functionality that issues JWTs.",
+            "Protect routes using JWT verification."
+          ]
+        }
+      },
+      {
+        "Title": "Error Handling and Debugging",
+        "Detail": {
+          "Introduction": "Error handling and debugging are crucial skills for developers. Proper error handling ensures that applications can gracefully manage unexpected situations, while debugging helps identify and fix issues in the code.",
+          "Usage": "These practices are essential in all stages of software development, from debugging during development to handling errors in production environments.",
+          "Sample": "app.use((err, req, res, next) => { res.status(500).send('Something broke!'); });"
+        },
+        "Example": {
+          "Description": "Implementing error handling middleware.",
+          "Explanation": "This example shows how to set up error handling middleware in an Express application.",
+          "Code": "const express = require('express');\nconst app = express();\n\napp.get('/', (req, res) => {\n    throw new Error('An unexpected error occurred!');\n});\n\napp.use((err, req, res, next) => {\n    console.error(err.stack);\n    res.status(500).send('Something broke!');\n});\n\napp.listen(3000, () => {\n    console.log('Error handling server running at http://localhost:3000');\n});"
+        },
+        "Revision": {
+          "Title": "Authentication and Authorization in Node.js",
+          "Example": "Using JWT to protect routes.",
+          "Usage": "Just as authentication must handle various scenarios, error handling ensures user experience is smooth and informative."
+        },
+        "Guidelines": [
+          "Log errors to a monitoring service for better visibility.",
+          "Provide user-friendly messages while hiding sensitive error details."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "next",
+            "Description": "Passes control to the next middleware function or error handler."
+          },
+          {
+            "Method": "status",
+            "Description": "Sets the HTTP response status code."
+          }
+        ],
+        "Project": {
+          "Description": "Create a web application that demonstrates error handling for various routes.",
+          "Tasks": [
+            "Implement routes that intentionally throw errors.",
+            "Set up global error handling middleware."
+          ]
+        }
+      },
+      {
+        "Title": "Node.js with WebSocket for Real-Time Applications",
+        "Detail": {
+          "Introduction": "WebSocket is a protocol that enables two-way communication between the client and the server over a single, long-lived connection. It is particularly useful for applications that require real-time data exchange, such as chat applications and live notifications.",
+          "Usage": "Commonly used in online gaming, live chat applications, and collaborative tools where instant communication is necessary.",
+          "Sample": "const WebSocket = require('ws');"
+        },
+        "Example": {
+          "Description": "Setting up a WebSocket server that echoes messages back to the client.",
+          "Explanation": "This code demonstrates how to create a WebSocket server that listens for connections and responds with the same message it receives.",
+          "Code": "const WebSocket = require('ws');\n\nconst wss = new WebSocket.Server({ port: 8080 });\n\nwss.on('connection', ws => {\n    ws.on('message', message => {\n        console.log(`Received: ${message}`);\n        ws.send(`Echo: ${message}`);\n    });\n});\n\nconsole.log('WebSocket server running at ws://localhost:8080');"
+        },
+        "Revision": {
+          "Title": "File Uploads and Data Streaming",
+          "Example": "Handling file uploads securely.",
+          "Usage": "WebSocket complements file uploads by allowing real-time updates and notifications regarding file status."
+        },
+        "Guidelines": [
+          "Implement proper error handling for WebSocket connections.",
+          "Consider using libraries like Socket.io for easier implementation of real-time features."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "send",
+            "Description": "Sends a message to the connected client over the WebSocket."
+          },
+          {
+            "Method": "on",
+            "Description": "Attaches an event handler for a specific event (like 'message' or 'connection')."
+          }
+        ],
+        "Project": {
+          "Description": "Create a simple chat application that uses WebSocket for real-time messaging.",
+          "Tasks": [
+            "Set up a WebSocket server.",
+            "Implement a client-side WebSocket connection to send and receive messages."
+          ]
+        }
+      },
+      {
+        "Title": "Using Template Engines (e.g., EJS, Pug)",
+        "Detail": {
+          "Introduction": "Template engines are used to dynamically generate HTML content by embedding JavaScript code within HTML. They simplify the process of rendering views in web applications.",
+          "Usage": "Commonly used in web applications to create dynamic pages where the content changes based on user input or data from a server.",
+          "Sample": "app.set('view engine', 'ejs');"
+        },
+        "Example": {
+          "Description": "Rendering a view using EJS as the template engine.",
+          "Explanation": "This example demonstrates how to use EJS to render a dynamic HTML page in an Express application.",
+          "Code": "const express = require('express');\nconst app = express();\n\napp.set('view engine', 'ejs');\n\napp.get('/', (req, res) => {\n    res.render('index', { title: 'Home Page', message: 'Welcome to the Node.js App!' });\n});\n\napp.listen(3000, () => {\n    console.log('Server running at http://localhost:3000');\n});"
+        },
+        "Revision": {
+          "Title": "Node.js with WebSocket for Real-Time Applications",
+          "Example": "Setting up a WebSocket server.",
+          "Usage": "Template engines can be used alongside WebSocket to render dynamic content based on real-time events."
+        },
+        "Guidelines": [
+          "Use template engines to separate HTML structure from business logic.",
+          "Keep templates simple and avoid complex logic in them."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "render",
+            "Description": "Renders a view and sends the rendered HTML string to the client."
+          },
+          {
+            "Method": "set",
+            "Description": "Sets application-level settings, such as the view engine (e.g., EJS, Pug)."
+          }
+        ],
+        "Project": {
+          "Description": "Create a web application that uses EJS to render dynamic pages.",
+          "Tasks": [
+            "Set up routes that render different views based on user navigation.",
+            "Pass data from the server to the templates for dynamic content."
+          ]
+        }
+      },
+      {
+        "Title": "Working with the Cluster Module for Scaling",
+        "Detail": {
+          "Introduction": "The cluster module in Node.js allows you to create child processes that share the same server port. This is useful for improving performance by utilizing multiple CPU cores.",
+          "Usage": "Commonly used in production environments to handle a high number of requests by distributing the load across multiple processes.",
+          "Sample": "const cluster = require('cluster');"
+        },
+        "Example": {
+          "Description": "Creating a simple clustered server using the cluster module.",
+          "Explanation": "This example demonstrates how to use the cluster module to spawn multiple worker processes that handle incoming requests.",
+          "Code": "const cluster = require('cluster');\nconst http = require('http');\nconst numCPUs = require('os').cpus().length;\n\nif (cluster.isMaster) {\n    for (let i = 0; i < numCPUs; i++) {\n        cluster.fork();\n    }\n    cluster.on('exit', (worker, code, signal) => {\n        console.log(`Worker ${worker.process.pid} died`);\n    });\n} else {\n    http.createServer((req, res) => {\n        res.writeHead(200);\n        res.end('Hello from Node.js Cluster!');\n    }).listen(8000);\n}"
+        },
+        "Revision": {
+          "Title": "Using Template Engines (e.g., EJS, Pug)",
+          "Example": "Rendering views in an Express application.",
+          "Usage": "Scaling applications with the cluster module can improve performance when serving dynamic content rendered with template engines."
+        },
+        "Guidelines": [
+          "Monitor the performance of your application to determine the optimal number of worker processes to spawn.",
+          "Implement logging to track the behavior of each worker process."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "fork",
+            "Description": "Creates a new child process that shares the same server port."
+          },
+          {
+            "Method": "isMaster",
+            "Description": "Checks if the current process is the master process."
+          }
+        ],
+        "Project": {
+          "Description": "Build a clustered HTTP server that can handle multiple requests simultaneously.",
+          "Tasks": [
+            "Implement a server that uses the cluster module to spawn worker processes.",
+            "Test the server to ensure it handles concurrent requests effectively."
+          ]
+        }
+      },
+      {
+        "Title": "Node.js Package Management with NPM and Yarn",
+        "Detail": {
+          "Introduction": "NPM and Yarn are package managers for JavaScript that facilitate the installation, version management, and dependency management of libraries and tools for Node.js applications.",
+          "Usage": "Used in all Node.js projects to manage third-party libraries, ensuring that developers can easily install and update packages.",
+          "Sample": "npm install lodash"
+        },
+        "Example": {
+          "Description": "Installing a package using NPM and managing dependencies.",
+          "Explanation": "This example demonstrates how to install a package and manage dependencies using NPM.",
+          "Code": "npm install express\n\n// package.json will be updated to include 'express' as a dependency."
+        },
+        "Revision": {
+          "Title": "Working with the Cluster Module for Scaling",
+          "Example": "Creating a clustered server.",
+          "Usage": "Package managers are essential for managing the libraries used in clustered applications."
+        },
+        "Guidelines": [
+          "Use `package.json` to manage project metadata and dependencies.",
+          "Regularly update dependencies to benefit from improvements and security fixes."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "install",
+            "Description": "Installs a package from the NPM registry."
+          },
+          {
+            "Method": "update",
+            "Description": "Updates outdated packages in the project."
+          }
+        ],
+        "Project": {
+          "Description": "Create a Node.js project that uses NPM or Yarn to manage dependencies.",
+          "Tasks": [
+            "Initialize a new Node.js project with `npm init`.",
+            "Install necessary packages and configure `package.json`."
+          ]
+        }
+      },
+      {
+        "Title": "Managing Configurations in Node.js",
+        "Detail": {
+          "Introduction": "Configuration management is crucial for maintaining different settings for various environments (development, testing, production) in Node.js applications.",
+          "Usage": "Typically used to adjust application behavior based on the environment, such as database connections or API keys.",
+          "Sample": "const config = require('config');"
+        },
+        "Example": {
+          "Description": "Using the 'config' package to manage application settings.",
+          "Explanation": "This example shows how to use a configuration file to manage settings for different environments.",
+          "Code": "const config = require('config');\n\nconst dbConfig = config.get('database');\nconsole.log(`Connecting to database: ${dbConfig.host}`);"
+        },
+        "Revision": {
+          "Title": "Node.js Package Management with NPM and Yarn",
+          "Example": "Installing packages for project dependencies.",
+          "Usage": "Configuration management works hand-in-hand with package management to ensure that your application runs smoothly in different environments."
+        },
+        "Guidelines": [
+          "Use environment variables for sensitive information such as API keys.",
+          "Organize configuration files systematically to avoid confusion."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "get",
+            "Description": "Retrieves the value of a specified configuration key."
+          },
+          {
+            "Method": "has",
+            "Description": "Checks if a specific configuration key exists."
+          }
+        ],
+        "Project": {
+          "Description": "Create a Node.js application that uses configuration files to manage settings for different environments.",
+          "Tasks": [
+            "Implement separate configuration files for development and production environments.",
+            "Access configuration settings in your application code."
+          ]
+        }
+      },
+      {
+        "Title": "Logging and Monitoring in Node.js",
+        "Detail": {
+          "Introduction": "Logging and monitoring are essential practices for maintaining the health of Node.js applications. They help developers track application behavior, detect issues, and improve performance.",
+          "Usage": "Used in production environments to monitor application performance, log errors, and gain insights into application usage.",
+          "Sample": "const winston = require('winston');"
+        },
+        "Example": {
+          "Description": "Setting up a logging system using Winston.",
+          "Explanation": "This example shows how to configure logging with different levels of severity using the Winston library.",
+          "Code": "const winston = require('winston');\n\nconst logger = winston.createLogger({\n    level: 'info',\n    format: winston.format.json(),\n    transports: [\n        new winston.transports.Console(),\n        new winston.transports.File({ filename: 'combined.log' })\n    ],\n});\n\nlogger.info('This is an info message');\nlogger.error('This is an error message');"
+        },
+        "Revision": {
+          "Title": "Managing Configurations in Node.js",
+          "Example": "Using configuration files to manage settings.",
+          "Usage": "Configuration management is crucial for logging setup, as different environments may require different logging levels and targets."
+        },
+        "Guidelines": [
+          "Use structured logging to make logs easier to parse and analyze.",
+          "Log errors with sufficient context to aid in debugging."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "info",
+            "Description": "Logs an informational message."
+          },
+          {
+            "Method": "error",
+            "Description": "Logs an error message."
+          }
+        ],
+        "Project": {
+          "Description": "Implement a logging system in a Node.js application.",
+          "Tasks": [
+            "Set up Winston for logging.",
+            "Log different levels of messages based on application events."
+          ]
+        }
+      },
+      {
+        "Title": "Using Task Schedulers (e.g., cron Jobs)",
+        "Detail": {
+          "Introduction": "Task schedulers are used to execute scripts or functions at specified intervals or times. In Node.js, this can be achieved using libraries such as node-cron.",
+          "Usage": "Commonly used for tasks like sending emails, cleaning up databases, and generating reports on a regular basis.",
+          "Sample": "const cron = require('node-cron');"
+        },
+        "Example": {
+          "Description": "Scheduling a task to run every minute using node-cron.",
+          "Explanation": "This example demonstrates how to set up a cron job that logs a message every minute.",
+          "Code": "const cron = require('node-cron');\n\ncron.schedule('* * * * *', () => {\n    console.log('Task executed every minute');\n});"
+        },
+        "Revision": {
+          "Title": "Logging and Monitoring in Node.js",
+          "Example": "Setting up a logging system using Winston.",
+          "Usage": "Scheduled tasks can benefit from logging to monitor execution and catch any errors."
+        },
+        "Guidelines": [
+          "Ensure that scheduled tasks are idempotent to avoid issues when they run multiple times.",
+          "Monitor scheduled tasks to ensure they execute successfully."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "schedule",
+            "Description": "Schedules a task with a cron expression."
+          },
+          {
+            "Method": "stop",
+            "Description": "Stops a scheduled task."
+          }
+        ],
+        "Project": {
+          "Description": "Create a Node.js application that performs scheduled tasks.",
+          "Tasks": [
+            "Set up a cron job to send a reminder email every day.",
+            "Log the execution time of the scheduled task."
+          ]
+        }
+      },
+      {
+        "Title": "Node.js Security Best Practices",
+        "Detail": {
+          "Introduction": "Security is a critical aspect of web application development. Node.js applications must be designed with security in mind to protect against common vulnerabilities.",
+          "Usage": "Relevant for all Node.js applications, especially those handling sensitive data or user authentication.",
+          "Sample": "const helmet = require('helmet');"
+        },
+        "Example": {
+          "Description": "Implementing security best practices using Helmet.",
+          "Explanation": "This example shows how to use Helmet to secure HTTP headers in your application.",
+          "Code": "const express = require('express');\nconst helmet = require('helmet');\n\nconst app = express();\napp.use(helmet());\n\napp.get('/', (req, res) => {\n    res.send('Hello, secure world!');\n});\n\napp.listen(3000, () => {\n    console.log('Server running at http://localhost:3000');\n});"
+        },
+        "Revision": {
+          "Title": "Using Task Schedulers (e.g., cron Jobs)",
+          "Example": "Scheduling a task to run every minute.",
+          "Usage": "Scheduled tasks must also adhere to security practices to prevent unauthorized access or data leakage."
+        },
+        "Guidelines": [
+          "Always validate and sanitize user inputs to prevent injection attacks.",
+          "Use HTTPS to secure data in transit."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "use",
+            "Description": "Applies middleware to secure HTTP headers."
+          },
+          {
+            "Method": "config",
+            "Description": "Configures Helmet with specific security policies."
+          }
+        ],
+        "Project": {
+          "Description": "Secure a Node.js application by implementing best security practices.",
+          "Tasks": [
+            "Use Helmet to secure HTTP headers.",
+            "Implement input validation and sanitization."
+          ]
+        }
+      },
+      {
+        "Title": "Introduction to Express.js Framework",
+        "Detail": {
+          "Introduction": "Express.js is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.",
+          "Usage": "Used to build web applications and APIs, making it easier to manage routing, middleware, and sessions.",
+          "Sample": "const express = require('express');"
+        },
+        "Example": {
+          "Description": "Creating a basic Express.js application.",
+          "Explanation": "This example demonstrates how to set up a simple Express server that responds to HTTP GET requests.",
+          "Code": "const express = require('express');\nconst app = express();\n\napp.get('/', (req, res) => {\n    res.send('Hello from Express!');\n});\n\napp.listen(3000, () => {\n    console.log('Express server running at http://localhost:3000');\n});"
+        },
+        "Revision": {
+          "Title": "Node.js Security Best Practices",
+          "Example": "Implementing security best practices using Helmet.",
+          "Usage": "Express.js can be secured using the best practices discussed previously."
+        },
+        "Guidelines": [
+          "Use middleware to manage requests and responses effectively.",
+          "Organize routes logically to improve maintainability."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "get",
+            "Description": "Defines a route for handling GET requests."
+          },
+          {
+            "Method": "listen",
+            "Description": "Starts the server and listens for connections."
+          }
+        ],
+        "Project": {
+          "Description": "Build a simple web application using Express.js.",
+          "Tasks": [
+            "Set up routes for different endpoints.",
+            "Implement middleware for logging and error handling."
+          ]
+        }
+      },
+      {
+        "Title": "Introduction to Nest.js Framework",
+        "Detail": {
+          "Introduction": "Nest.js is a progressive Node.js framework designed for building efficient and scalable server-side applications. It leverages TypeScript and is inspired by Angular, providing a modular architecture that enhances the maintainability and scalability of applications.",
+          "Usage": "Ideal for building enterprise-level applications, RESTful APIs, and microservices with a clear structure and best practices in mind.",
+          "Sample": "import { Module } from '@nestjs/common';"
+        },
+        "Example": {
+          "Description": "Creating a basic Nest.js application with a simple controller.",
+          "Explanation": "This example demonstrates how to set up a Nest.js application with one controller that handles HTTP GET requests.",
+          "Code": "import { NestFactory } from '@nestjs/core';\nimport { Module, Controller, Get } from '@nestjs/common';\n\n@Controller()\nclass AppController {\n    @Get()\n    getHello(): string {\n        return 'Hello from Nest.js!';\n    }\n}\n\n@Module({\n    controllers: [AppController],\n})\nclass AppModule {}\n\nasync function bootstrap() {\n    const app = await NestFactory.create(AppModule);\n    await app.listen(3000);\n}\nbootstrap();"
+        },
+        "Revision": {
+          "Title": "Introduction to Express.js Framework",
+          "Example": "Building a simple web application using Express.js.",
+          "Usage": "Nest.js builds upon the principles of Express.js, making it easy for those familiar with Express to adopt Nest."
+        },
+        "Guidelines": [
+          "Leverage decorators for defining routes and services to keep the code clean.",
+          "Organize your application into modules to enhance maintainability."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "create",
+            "Description": "Creates an instance of a Nest application."
+          },
+          {
+            "Method": "listen",
+            "Description": "Starts the application and begins listening for incoming requests."
+          }
+        ],
+        "Project": {
+          "Description": "Build a simple REST API using Nest.js.",
+          "Tasks": [
+            "Set up a Nest.js project using the Nest CLI.",
+            "Create a controller with multiple endpoints to perform CRUD operations."
+          ]
+        }
+      },
+      {
+        "Title": "Testing Node.js Applications (e.g., Mocha, Jest)",
+        "Detail": {
+          "Introduction": "Testing is a critical aspect of software development that ensures code quality and functionality. Node.js applications can be tested using various frameworks, with Mocha and Jest being two of the most popular choices.",
+          "Usage": "Testing is essential for maintaining code reliability, especially in larger applications where changes can introduce bugs.",
+          "Sample": "const assert = require('assert');"
+        },
+        "Example": {
+          "Description": "Writing a simple test case using Mocha.",
+          "Explanation": "This example demonstrates how to set up a basic test for a function using Mocha and Chai.",
+          "Code": "const assert = require('assert');\n\nfunction add(a, b) {\n    return a + b;\n}\n\ndescribe('Add Function', () => {\n    it('should return the sum of two numbers', () => {\n        assert.strictEqual(add(2, 3), 5);\n    });\n});"
+        },
+        "Revision": {
+          "Title": "Introduction to Nest.js Framework",
+          "Example": "Creating a basic Nest.js application with a controller.",
+          "Usage": "Testing is crucial for Nest.js applications to ensure that controllers and services function as expected."
+        },
+        "Guidelines": [
+          "Write tests for both unit and integration scenarios.",
+          "Use mocking libraries to isolate components during testing."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "describe",
+            "Description": "Groups related tests together."
+          },
+          {
+            "Method": "it",
+            "Description": "Defines a single test case."
+          }
+        ],
+        "Project": {
+          "Description": "Set up testing for a Node.js application using Mocha and Chai.",
+          "Tasks": [
+            "Write unit tests for various functions in the application.",
+            "Implement integration tests for API endpoints."
+          ]
+        }
+      },
+      {
+        "Title": "Deploying Node.js Applications",
+        "Detail": {
+          "Introduction": "Deployment is the process of making a web application accessible to users over the internet. Node.js applications can be deployed on various platforms, including cloud services, virtual private servers, and containerized environments.",
+          "Usage": "Proper deployment ensures that applications are running reliably and can handle user traffic effectively.",
+          "Sample": "npm run build"
+        },
+        "Example": {
+          "Description": "Deploying a Node.js application to Heroku.",
+          "Explanation": "This example demonstrates how to deploy a simple Node.js application to Heroku using the command line.",
+          "Code": "heroku create my-node-app\nnpm run build\ngit add .\ngit commit -m 'Initial commit'\ngit push heroku master"
+        },
+        "Revision": {
+          "Title": "Testing Node.js Applications (e.g., Mocha, Jest)",
+          "Example": "Setting up tests to ensure application quality.",
+          "Usage": "Testing should be integrated into the deployment process to ensure only quality code is deployed."
+        },
+        "Guidelines": [
+          "Use environment variables to manage configuration settings for different environments.",
+          "Automate deployment processes using CI/CD pipelines."
+        ],
+        "CommonMethods": [
+          {
+            "Method": "heroku create",
+            "Description": "Creates a new Heroku application."
+          },
+          {
+            "Method": "npm run build",
+            "Description": "Builds the application for production."
+          }
+        ],
+        "Project": {
+          "Description": "Deploy a Node.js application to a cloud platform.",
+          "Tasks": [
+            "Set up a cloud account (e.g., Heroku, AWS).",
+            "Deploy the application and ensure it's accessible via a web browser."
+          ]
+        }
+      }
+    ]

@@ -1,0 +1,155 @@
+Generate a step-by-step course in JSON format for the course name NodeJS. Each lesson should be designed for one day of learning, with a focus on combining related topics to make the content comprehensive and engaging. Use the following structure:
+
+Title: Name of the lesson/topic.
+
+Detail: An object that explains the topic, with:
+
+Introduction: A detailed explanation of the concept and its importance.
+
+Usage: Real-world applications or situations where this concept is relevant.
+
+Sample: A concise demonstration of syntax and basic usage.
+
+Example: A detailed, real-world code example, complete with comments and a practical implementation of the concept.
+
+Revision: A summary of key points from the previous lesson, including:
+
+Title: Previous lesson's title.
+
+Example: Key example or implementation from the previous lesson.
+
+Usage: Link between the previous lesson's usage and the current one.
+
+Guidelines: Tips or best practices for using the concept effectively.
+
+CommonMethods: An array of methods or functions related to the topic, with:
+
+Method: The name of the method or function.
+
+Description: Detailed explanation of what it does and how to use it.
+
+Project: A practical project to apply the day's lesson, including:
+
+Description: Overview of the project.
+
+Tasks: List of objectives or key steps to complete the project.
+
+Ensure the lessons are extensive, combining multiple related topics to challenge the learner. For example:
+
+In Laravel, combine routing, controllers, and views into a single lesson with a project that builds a functional feature.
+
+In JavaScript, teach variables, arrays, and loops in a single day with a small interactive program as the project.
+
+The course should be flexible, adapting the depth and structure of lessons based on the subject complexity. If a course requires only five lessons to fully explain all topics, generate five extended lessons instead of forcing arbitrary counts.
+
+{
+
+ copy
+    "Title": "some text",
+
+    "Detail": {
+
+        "Introduction": "sometext",
+
+        "Usage": "sometext",
+
+        "Sample": "some code syntax or some text"
+
+    },
+
+    "Example": {
+
+        "Description": "detail code example or some detail text",
+        "Explanation": "some text",
+        "Code": "somecode"
+
+    },
+
+    "Revision": {
+
+        "Title": "some text",
+
+        "Example": "some text",
+
+        "Usage": "some text"
+
+    },
+
+    "Guidelines": [
+
+        "sometext",
+
+        "sometext"
+
+    ],
+
+    "CommonMethods": [
+
+        {
+
+            "Method": "some method",
+
+            "Description": "sometext"
+
+        },
+
+        {
+
+            "Method": "some method",
+
+            "Description": "sometext"
+
+        }
+
+    ],
+
+    "Project": {
+
+        "Description": "something",
+
+        "Tasks": [
+
+            "sometext",
+
+            "sometext"
+
+        ]
+
+    }
+},
+
+base on this structure
+
+sample and example is not the same. sample is only for showing basic syntax or basic use. but example's decription is to show real world like usage code form or implematation.
+
+Introduction to Node.js
+Installing Node.js and NPM
+Understanding the Node.js Event Loop
+Core Modules in Node.js
+Working with the File System (fs)
+Handling HTTP Requests and Responses
+Asynchronous Programming in Node.js
+Streams and Buffers
+Working with Path and URL Modules
+EventEmitter and Custom Events
+Creating and Managing Servers with http
+Building RESTful APIs with Node.js
+Middleware in Node.js Applications
+Working with Databases (e.g., MongoDB, MySQL, PostgreSQL)
+File Uploads and Data Streaming
+Authentication and Authorization in Node.js
+Error Handling and Debugging
+Node.js with WebSocket for Real-Time Applications
+Using Template Engines (e.g., EJS, Pug)
+Working with the cluster Module for Scaling
+Node.js Package Management with NPM and Yarn
+Managing Configurations in Node.js
+Logging and Monitoring in Node.js
+Using Task Schedulers (e.g., cron Jobs)
+Node.js Security Best Practices
+Introduction to Express.js Framework
+Introduction to Nest.js Framework
+Testing Node.js Applications (e.g., Mocha, Jest)
+Deploying Node.js Applications
+
+cover all this topics

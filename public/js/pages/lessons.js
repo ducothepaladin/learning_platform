@@ -4,6 +4,10 @@ const setBtn = document.getElementById('punishment-set');
 
 let check = puni? true: false;
 
+if(occourPuni) {
+    check = false;
+}
+
 
 function disableHandle () {
     

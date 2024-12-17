@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('track')->default(0);
             $table->integer('finished')->default(0);
             $table->text('punishment')->nullable();
+            $table->integer('duration');                                                                
             $table->timestamps();
         });
     }

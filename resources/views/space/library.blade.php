@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold text-cod-gray-950">
             <i class="fa-solid fa-book-open me-4"></i>Library
         </h1>
-        <div style="max-width: 980px; max-height: 750px;" class="grid gap-4 overflow-y-auto p-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div style=" max-height: 750px;" class="grid gap-4 overflow-y-auto p-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <div class="flex justify-center items-center">
                 <div id="add-new-form"
                     class="lg:w-48 lg:h-40 w-40 h-36 cursor-pointer transition-all duration-200 active:scale-90 flex p-2 flex-col rounded-md bg-cod-gray-950">

@@ -49,6 +49,7 @@ class SpaceController extends Controller
         $path->course_id = request()->title;
         $path->plan_status = request()->plan;
         $path->difficulty_status = request()->level;
+        $path->duration = request()->plan;
         $path->user_id = Auth::id();
         $path->save();
 

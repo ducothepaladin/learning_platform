@@ -3,12 +3,19 @@
 
 @section('middle')
     <div id="disable-canvas" class="absolute w-lvw h-lvh top-0 left-0 z-20 opacity-50 bg-cod-gray-950"></div>
+    @php
+        use Carbon\Carbon;
+
+        $today = Carbon::now();
+        $endDay = $path->lesson[$path->track]->created_at->addDays($path->duration);
+    @endphp
+    
     <div class="p-5 bg-tulip-tree-100 rounded-lg overflow-auto relative w-full">
         <div class=" mb-8 flex justify-between px-6 py-4 bg-cod-gray-950 text-tulip-tree-200 rounded-full">
             <h1 class="text-4xl font-bold font-serif"><i class="fa-solid fa-book me-4 text-4xl"></i>{{ $path->course->name }}
                 Course</h1>
             <div>
-                <p>Started at - {{$path->lesson[$path->track]->created_at->addDays(1)->diffForHumans()}}</p>
+                <p>End At - {{$endDay->toFormattedDayDateString()}}</p>
             </div>
         </div>
         @if (!$path->punishment)
@@ -26,7 +33,22 @@
                         class="px-4 py-3 bg-tulip-tree-400 rounded-full sm:w-full lg:w-1/6 text-lg text-cod-gray-950">Set</button>
                 </div>
             </form>
+        @else
+            @if (!$today->lessThanOrEqualTo($endDay))
+            <div class="fixed shadow-md shadow-slate-700 h-auto left-1/3 z-50 top-1/4 p-5 border w-2/5 rounded-lg bg-cod-gray-950">
+                <h2 class="font-bold w-full text-tulip-tree-200 mb-4 block text-2xl">Punishment</h2>
+                <div class="lg:flex gap-3 justify-between px-3">
+                    <p class="px-4 py-3 text-tulip-tree-200"><i class="fa-solid fa-circle-info me-3 text-lg"></i>{{$path->punishment}}</p>
+                    <a href="/space/lessons/finish-punishment/{{$path->id}}" id="punishment-set"
+                        class="px-4 py-3 bg-tulip-tree-400 rounded-full text-center sm:w-full lg:w-1/6 text-lg text-cod-gray-950">Done</a>
+                </div>
+            </div>
+            <script>window.occourPuni = true</script>
+            @else
+            <script>window.occourPuni = false</script>
+            @endif
         @endif
+        
         @php
             $lessons = json_decode($path->lesson[$path->track]->body, true);
         @endphp
@@ -107,6 +129,8 @@
                         {{ $index + 1 }}<i class="fa-solid ms-3 text-green-700 text-2xl fa-check float-end"></i></a>
                 @endif
             @endforeach
+        @else
+            <div class="text-center text-tulip-tree-100">There is no lesson, do some to finish</div>
         @endif
     </div>
 @endsection

@@ -15,6 +15,7 @@ Route::get("/space/lessons/delete/{id}", [SpaceController::class, 'delete']);
 
 Route::get("/space/lessons/{id}", [LessonsController::class, 'lessons'])->name('lessons');
 Route::post("/space/lessons/add-punishment/{id}", [LessonsController::class, 'punishment']);
+Route::get("/space/lessons/finish-punishment/{id}", [LessonsController::class, 'punishmentUpdate']);
 Route::post("/space/lessons/done/{id}",[LessonsController::class, 'done']);
 
 Route::get("/space/finished", [SpaceController::class, 'finished']);
